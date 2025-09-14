@@ -3,7 +3,6 @@ from utils import speak
 
 
 def handle_command(command):
-    print('command handled')
     if "hello" in command:
         say_hello()
 
@@ -11,9 +10,10 @@ def handle_command(command):
         tell_time()
 
     elif "exit" in command or "quit" in command:
-        return exit_program()
+        exit_program()
+        return False
     else:
-        print("Command not recognized.")
+        speak('Okay')
     return True
 
 
@@ -26,4 +26,3 @@ def tell_time():
 
 def exit_program():
     speak("Goodbye!")
-    return False 
