@@ -1,14 +1,9 @@
 import speech_recognition as sr 
 import pyttsx3 
+from commands import commands
+from utils import speak 
 
 recognizer = sr.Recognizer() 
-engine = pyttsx3.init()
-
-# Assistant speaks (pyttsx3)
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-    
 
 # Assistant listens
 def listen():
@@ -28,17 +23,11 @@ def listen():
 
 
 
-
-
 # Run the file 
 if __name__ == "__main__":
     speak("Hello! I am your assistant. How can I help you today?")
-    while True:
+    running = True
+    while running:
         command = listen()
         if command:
-            if "exit" in command or "quit" in command:
-                speak("Goodbye!")
-                break
-            else:
-                speak(f"You said: {command}")
-
+            running = commands.handle_command(command)
